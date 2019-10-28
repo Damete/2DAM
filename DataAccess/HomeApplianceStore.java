@@ -1,5 +1,3 @@
-package DataAccess;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +24,7 @@ public class HomeApplianceStore {
 		
 		while(!menuStatus) {
 			System.out.println("========================================="
-					+ "\n Bienvenido a la tienda el Tiendin, Que acción quiere realizar? \n 1- Guardar nuevo producto \n 2- Abrir un fichero stock.dat \n 3- Mostrar el registro \n 4- Vender producto \n 5- Salir \n"
+					+ "\n Bienvenido a la tienda el Tiendin, Que acciï¿½n quiere realizar? \n 1- Guardar nuevo producto \n 2- Abrir un fichero stock.dat \n 3- Mostrar el registro \n 4- Vender producto \n 5- Salir \n"
 					+ "=========================================");
 			var respuesta = sc.nextInt();
 			
@@ -52,7 +50,7 @@ public class HomeApplianceStore {
 				break;
 			
 			default:
-				System.out.println("El número introducido es incorrecto, por favor vuelva a introducirlo\n");
+				System.out.println("El nï¿½mero introducido es incorrecto, por favor vuelva a introducirlo\n");
 			}
 		}
 	}
@@ -73,7 +71,7 @@ public class HomeApplianceStore {
 		String precioUnitario;
 		int cantidad = 0;
 		
-		System.out.println("Introduce la información del producto \n");
+		System.out.println("Introduce la informaciï¿½n del producto \n");
 		
 		System.out.println("Nombre del producto");
 		nombreProducto = strings.nextLine();
@@ -84,7 +82,7 @@ public class HomeApplianceStore {
 		System.out.println("\nFabricante del producto");
 		fabricante = strings.nextLine();
 		
-		System.out.println("\nQue cantidad del producto quiere añadir ?");
+		System.out.println("\nQue cantidad del producto quiere aï¿½adir ?");
 		cantidad = ints.nextInt();
 		
 		System.out.println("\nCual es el precio unitario ?");
@@ -171,22 +169,22 @@ public class HomeApplianceStore {
 			stock = Integer.parseInt(revisarStock(producto)); //Comprobamos el stock que queda del determinado producto
 			
 			if(stock == 0) {
-				System.out.println("No queda stock de este producto, ¿quiere solicitarle mas al proveedeor ?");
+				System.out.println("No queda stock de este producto, ï¿½quiere solicitarle mas al proveedeor ?");
 				respuesta = sc.nextLine();
 				for(int i = 0; i < afirmativos.length; i++) {
 					if(respuesta.equals(afirmativos[i])) {
-						añadirStock(producto);
+						aÃ±adirStock(producto);
 					}
 				}
 				
 			}
 			else if(stock <= 5) {
-				System.out.println("El stock de este producto es bajo, por favor solicite más al proveedor");
-				System.out.println("¿Quiere solicitar más stock al proveedor?");
+				System.out.println("El stock de este producto es bajo, por favor solicite mï¿½s al proveedor");
+				System.out.println("ï¿½Quiere solicitar mï¿½s stock al proveedor?");
 				respuesta = sc.nextLine();
 				for(int i = 0; i< afirmativos.length; i++) {
 					if(respuesta.equals(afirmativos[i])) {
-						añadirStock(producto);
+						aÃ±adirStock(producto);
 					}
 				}
 			}
@@ -201,7 +199,7 @@ public class HomeApplianceStore {
 				
 				try {
 					cantidadPrevia = revisarStock(producto); //Obtenemos la cantidad que tenemos en stock en formato String para despues poder modificar el fichero
-					int total = stock - Integer.parseInt(cantidad); //Calculamos el stock que nos quedará despues de la venta. Para ello casteamos el valor que nos introduce el usuario de String a int para poder operar con el y con el valor que tenemos en el fichero que previamente hemos casteado a int
+					int total = stock - Integer.parseInt(cantidad); //Calculamos el stock que nos quedarï¿½ despues de la venta. Para ello casteamos el valor que nos introduce el usuario de String a int para poder operar con el y con el valor que tenemos en el fichero que previamente hemos casteado a int
 					String totalString = Integer.toString(total); // Casteamos el resultado a String para poder escribirlo en el fichero
 					
 					if(Integer.parseInt(totalString) >= 0) {
@@ -225,11 +223,11 @@ public class HomeApplianceStore {
 			            out.close();
 					}	
 					else {
-						System.out.println("No queda stock suficiente como para realizar la venta solicitada, quiere solicitar más stock al proveedor ?");
+						System.out.println("No queda stock suficiente como para realizar la venta solicitada, quiere solicitar mï¿½s stock al proveedor ?");
 						respuesta = sc.nextLine();
 						for(int i = 0; i < afirmativos.length; i++) {
 							if(respuesta.contains(afirmativos[i])) {
-								añadirStock(producto);
+								aÃ±adirStock(producto);
 							}
 							else {
 								System.out.println("Venta no realizada");
@@ -280,7 +278,7 @@ public class HomeApplianceStore {
 		return stock;
 	}
 	
-	public void crearCarpeta() throws IOException { //Esto es para la creación de las facturas, aqui se creará la carpeta donde se guarden 
+	public void crearCarpeta() throws IOException { //Esto es para la creaciï¿½n de las facturas, aqui se crearï¿½ la carpeta donde se guarden 
 
 		String rutaCarpeta = System.getProperty("user.home") + "/Desktop/Facturas";//En esta ruta ya esta incluida la carpeta que queremos crear
 		
@@ -335,7 +333,7 @@ public class HomeApplianceStore {
 		}
 	}
 	
-	public void añadirStock(String producto) {
+	public void aÃ±adirStock(String producto) {
 		Scanner sc = new Scanner(System.in);
 		String separador = ",";
 		String cantidad = "";
@@ -348,7 +346,7 @@ public class HomeApplianceStore {
 		List<String> lines = new ArrayList<String>();	
 		
 		try {
-			System.out.println("Cuantas unidades quiere añadir ?");
+			System.out.println("Cuantas unidades quiere aï¿½adir ?");
 			cantidad = sc.nextLine();
 			}
 			catch(Exception e) {
@@ -357,7 +355,7 @@ public class HomeApplianceStore {
 			
 			try {
 				cantidadPrevia = revisarStock(producto); //Obtenemos la cantidad que tenemos en stock en formato String para despues poder modificar el fichero
-				int total = stock + Integer.parseInt(cantidad); //Calculamos el stock que nos quedará despues de la venta. Para ello casteamos el valor que nos introduce el usuario de String a int para poder operar con el y con el valor que tenemos en el fichero que previamente hemos casteado a int
+				int total = stock + Integer.parseInt(cantidad); //Calculamos el stock que nos quedarï¿½ despues de la venta. Para ello casteamos el valor que nos introduce el usuario de String a int para poder operar con el y con el valor que tenemos en el fichero que previamente hemos casteado a int
 				String totalString = Integer.toString(total); // Casteamos el resultado a String para poder escrivirlo en el fichero
 				
 	            File fichero = new File(rutaFichero);

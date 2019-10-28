@@ -1,6 +1,6 @@
 package JavaPractices;
 
-//Damià Febrer Rebasa 30/09/2019
+//Damiï¿½ Febrer Rebasa 30/09/2019
 
 import java.util.Scanner;
 import java.io.FileInputStream;
