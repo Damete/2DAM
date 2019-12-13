@@ -38,7 +38,7 @@ public class Filosofo implements Runnable{
  public void comer(){  
       try{  
          System.out.println("Filosofo "+numero+" esta comiendo");  
-         int espera= (int)(Math.random()*700);  
+         int espera= (int)(20 * Math.random()*1000);  
          hilo.sleep(espera);  
          System.out.println("Filosofo "+numero+" esta satisfecho");  
       }catch(InterruptedException e){  
