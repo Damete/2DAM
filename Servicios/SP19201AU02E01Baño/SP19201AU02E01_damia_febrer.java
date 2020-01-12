@@ -13,7 +13,7 @@ public class SP19201AU02E01_damia_febrer{
         public synchronized void irAlBaño(String nombre){
             if(ocupado){
                 try{                    
-                    Thread.sleep((int)(10 * Math.random()*1000));
+                    Thread.sleep((int)(10 * Math.random() * 1000));
                     ocupado = false;
                 }
                 catch(Exception e){
@@ -66,8 +66,25 @@ public class SP19201AU02E01_damia_febrer{
         Persona p1 = new Persona("Tofol", baño);
         Persona p2 = new Persona("Biel", baño);
         Persona p3  = new Persona("Pep", baño);
-        p1.run();
-        p2.run();
-        p3.run();
+        for(int i = 0; i < 3; i++){
+            int entrada  = (int)(Math.random() * 3) + 1;
+            switch(entrada){
+
+                case 1:
+                p1.run();
+                break;
+
+                case 2:
+                p2.run();
+                break;
+
+                case 3:
+                p3.run();
+                break;
+
+                default:
+                break;
+            }
+        }
     }
 }
