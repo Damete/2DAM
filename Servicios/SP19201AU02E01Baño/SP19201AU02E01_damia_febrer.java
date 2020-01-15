@@ -6,18 +6,6 @@ public class SP19201AU02E01_damia_febrer{
 
         public boolean ocupado = false;
 
-        // public synchronized void run(){
-        //     if(ocupado){
-        //         try{                    
-        //             Thread.sleep((int)(10 * Math.random()*1000));
-        //             ocupado = false;
-        //         }
-        //         catch(Exception e){
-        //             e.printStackTrace();
-        //         }
-        //     }
-        // }
-
         public synchronized boolean getEstadoBaño(){
             return ocupado;
         }
