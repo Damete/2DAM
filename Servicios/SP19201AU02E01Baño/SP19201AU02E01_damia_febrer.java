@@ -2,7 +2,7 @@ package Servicios.SP19201AU02E01Baño;
 
 public class SP19201AU02E01_damia_febrer{
 
-    class Baño{
+    static class Baño{
 
         public boolean ocupado = false;
 
@@ -10,24 +10,23 @@ public class SP19201AU02E01_damia_febrer{
             return ocupado;
         }
 
-        public synchronized void irAlBaño(){
+        public synchronized void irAlBaño(String nombre){
             if(ocupado){
                 try{                    
-                    Thread.sleep((int)(10 * Math.random()*1000));
+                    Thread.sleep((int)(10 * Math.random() * 1000));
                     ocupado = false;
                 }
                 catch(Exception e){
                     e.printStackTrace();
                 }
             }
-            else{
-                notifyAll();
-            }
+            System.out.println(nombre + " ha salido del baño");
+            notifyAll();
         }
 
     }
 
-    class Persona implements Runnable{
+    static class Persona implements Runnable{
         String nombre;
         Baño baño;
 
@@ -37,29 +36,55 @@ public class SP19201AU02E01_damia_febrer{
         }
 
         public void run(){
-            boolean ocupado = baño.getEstadoBaño();
+            boolean iterate = true;
+
             do{
+                boolean ocupado = baño.getEstadoBaño();
                 if(!ocupado){
-                    System.out.println(nombre + " he entrado en el baño");
-                    baño.irAlBaño();                    
+                    System.out.println(nombre + " ha entrado en el baño");
+                    baño.irAlBaño(this.nombre);                    
                 }
                 else{
                     try{
                         this.wait();
+                        boolean estado = baño.getEstadoBaño();
+                        if(!estado){
+                            iterate = false;
+                        }
                     }
                     catch(Exception e){
                         e.printStackTrace();
                     }
                 }
             }
-            while(!ocupado);            
+            while(!iterate);
         }
 
     }
     public static void main(String args[]){
         Baño baño = new Baño();
-        Persona pe = new Persona("Tofol", baño);
-        pe.run();
-        
+        Persona p1 = new Persona("Tofol", baño);
+        Persona p2 = new Persona("Biel", baño);
+        Persona p3  = new Persona("Pep", baño);
+        for(int i = 0; i < 3; i++){
+            int entrada  = (int)(Math.random() * 3) + 1;
+            switch(entrada){
+
+                case 1:
+                p1.run();
+                break;
+
+                case 2:
+                p2.run();
+                break;
+
+                case 3:
+                p3.run();
+                break;
+
+                default:
+                break;
+            }
+        }
     }
 }
