@@ -1,6 +1,6 @@
 package Servicios.Barberia;
 
-public class SP19201AU02E02_damia_febrer_salaEspera implements Runnable{
+public class SP19201AU02E02_damia_febrer_salaEspera{
     int sillasLibres = 5;
     SP19201AU02E02_damia_febrer_barbero barbero;
 
@@ -12,19 +12,33 @@ public class SP19201AU02E02_damia_febrer_salaEspera implements Runnable{
         return sillasLibres;
     }
 
-    @Override
-    public void run() {
+    synchronized void entrarBarberia(){
         int barberosLibres = barbero.getbarberosLibres();
+        boolean barberosOcupados = true;
+
         if(barberosLibres > 0){
-            //Si hay barberos libres se sientan a cortarse el pelo
+            barbero.cortarPelo();
+            barbero.clienteListo();           
         }
         else{
-            //Si no los hay se sientan en una silla, si no hay sillas libres se van de la barberia
             int libres = getSitiosLibres();
             if(libres > 0){
                 System.out.println("El cliente se sienta en una silla a esperar su turno");
+                sillasLibres -=1;
                 try{
+                    this.wait();
+                    do{
+                        int barberos = barbero.getbarberosLibres();
+                        if(barberos > 0){
+                            barberosOcupados = false;
+                        }
+                    }
+                    while(barberosOcupados);
 
+                    if(!barberosOcupados){
+                        notifyAll();
+                        sillasLibres += 1;
+                    }
                 }
                 catch(Exception e){
                     e.printStackTrace();
