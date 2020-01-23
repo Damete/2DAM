@@ -27,6 +27,7 @@ public class L3A2_Main_Damia{
                     break;
 
                 case "2":
+                    modificar.generarDocument();
                     break;
 
                 case "3":

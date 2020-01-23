@@ -17,6 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class ModifyXML{
     private Document document;
@@ -24,31 +25,26 @@ public class ModifyXML{
 	public GeneradorDOM() throws ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-		Document doc = docBuilder.parse("new_stock.xml");
+		Document document = docBuilder.parse("new_stock.xml");
 	}
 	
 	public void generarDocument( ) {
-        Node company = doc.getFirstChild();
-        Node staff = doc.getElementsByTagName("staff").item(0);
+        Node root = document.getFirstChild();
 
-		Element productos = document.createElement("productos");
-		document.appendChild(productos);
-		
-		Element juego = document.createElement("videogame");
-		productos.appendChild(videogame);
-		juego.setAttribute("cod", "0001");
+        Element game = document.createElement("videogame");
+        root.appendChild(game);
 		
 		Element title = document.createElement("title");
 		title.appendChild(document.createTextNode("New Super Mario Bros"));
-		juego.appendChild(title);
+		game.appendChild(title);
 		
 		Element distributor = document.createElement("distributor");
 		distributor.appendChild(document.createTextNode("Nintendo"));
-        juego.appendChild(distributor);
+        game.appendChild(distributor);
         
         Element url = document.createElement("url");
         url.appendChild(document.createTextNode("http://www.mariobros.com"));
-        juego.appendChild(url);
+        game.appendChild(url);
         
 	}
 }

@@ -38,7 +38,7 @@ public class LecturaXML {
 
             System.out.println(elemento.getAttribute("music"));
 
-            if(elemento.getElementsByTagName("music"){
+            if(elemento.getElementsByTagName("music")){
                 generoProductos.add(elemento.getAttribute("genre"));
                 codigoProductos.add(elemento.getAttribute("cod"));
                 titulo.add(elemento.getAttribute("title"));
