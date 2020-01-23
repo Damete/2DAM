@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<new_stock> 
+	<date>2020-01-01</date>
+    <music genre="pop" cod="1111">
+      <title>Rare</title>
+      <artist>Selena Gomez</artist>
+      <url>http://www.selenagomez.com</url>
+   </music>
+   <book cod="2222">
+      <title>The winds of winter</title>
+      <author>George R.R. Martin</author>
+      <url>http://georgerrm.org</url>
+   </book>
+   <book cod="3477">
+      <title>The ballad of Songbirds and Snakes</title>
+      <author>Suzanne Collins</author>
+      <url>http://www.suzannec.com</url>
+   </book>
+</new_stock>
