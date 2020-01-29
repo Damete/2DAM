@@ -1,4 +1,4 @@
-package Servicios;
+package Servicios.Hilos;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public class Ej1 {
 			Process process = runtime.exec(args);  
 			process.destroy();
 		}catch(IOException ex){
-			System.err.println("Excepció de E/S!!");  
+			System.err.println("Excepciï¿½ de E/S!!");  
 			System.exit(-1);
 		}
 	}
