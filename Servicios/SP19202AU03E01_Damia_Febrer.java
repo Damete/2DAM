@@ -10,7 +10,7 @@ public class SP19202AU03E01_Damia_Febrer{
             Socket cliente = new Socket();
             InetSocketAddress addr = new InetSocketAddress("localhost", 5555);
             cliente.connect(addr);
-            BufferedWriter br = new BufferedReader(new OutputStreamWriter(cliente.getOutputStream()));
+            BufferedWriter br = new BufferedWriter(new OutputStreamWriter(cliente.getOutputStream()));
             DataInputStream input = new DataInputStream(cliente.getInputStream());
             String msg = "mensaje del cliente";
             br.write(msg);
