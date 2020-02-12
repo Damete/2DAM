@@ -15,7 +15,7 @@ public class SPU03E01e1_1cliente_Damia_Febrer{
             Socket cliente = new Socket();
             InetSocketAddress addr = new InetSocketAddress("localhost", 44016);
 
-            String rutaFichero = "C:\\Users\\dfebrer\\Desktop\\ejemplo.dat";
+            String rutaFichero = "C:\\Users\\dfebrer\\Projects\\2DAM_Java\\Servicios\\Sockets\\EjerciciosComunicacionRed\\E1\\ejemplo.dat";
             
             //Creamos el Stream para enviar los datos al servidor
             OutputStream os = cliente.getOutputStream();
