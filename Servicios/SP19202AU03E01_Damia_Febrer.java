@@ -14,6 +14,8 @@ public class SP19202AU03E01_Damia_Febrer{
             DataInputStream input = new DataInputStream(cliente.getInputStream());
             String msg = "mensaje del cliente";
             br.write(msg);
+            Ssytem.out.println(input);
+            cliente.close();
         } catch(IOException e){
             e.printStackTrace();
         }
