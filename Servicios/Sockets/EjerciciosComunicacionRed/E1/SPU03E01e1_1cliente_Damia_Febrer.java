@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class SPU03E01e1_1cliente_Damia_Febrer{
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args){
         try{
             //Creamos el socket del cliente y le especificamos la dirección a la que va a atacar
             Socket cliente = new Socket();
