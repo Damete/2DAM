@@ -13,7 +13,8 @@ public class SPU03E01e1_1cliente_Damia_Febrer{
         try{
             //Creamos el socket del cliente y le especificamos la dirección a la que va a atacar
             Socket cliente = new Socket();
-            InetSocketAddress addr = new InetSocketAddress("localhost", 44016);
+            InetSocketAddress addr = new InetSocketAddress("localhost", 44014);
+            cliente.connect(addr);
 
             String rutaFichero = "C:\\Users\\dfebrer\\Projects\\2DAM_Java\\Servicios\\Sockets\\EjerciciosComunicacionRed\\E1\\ejemplo.dat";
             
@@ -26,14 +27,11 @@ public class SPU03E01e1_1cliente_Damia_Febrer{
 
             //Enviamos el mensaje al servidor
             os.write(fileContent);
+            System.out.println("Mensaje enviado al servidor");
 
             //Cerramos el socket del cliente
             cliente.close();
-
-
-            // String cadena = new String(fileContent); //Convertimos la array en un string
-            // System.out.println(fileContent);
-            // System.out.println(cadena);
+            
         } catch(IOException e){
             e.printStackTrace();
         }
