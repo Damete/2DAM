@@ -17,5 +17,7 @@ public class SPU03E01e3_2client_Damia_Febrer{
         ds.receive(dpr);  
         String delServer = new String(dpr.getData(), 0, dpr.getLength());  
         System.out.println(delServer);
+
+        ds.close();
     }
 }
