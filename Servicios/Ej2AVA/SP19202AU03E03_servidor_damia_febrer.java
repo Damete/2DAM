@@ -115,7 +115,7 @@ public class SP19202AU03E03_servidor_damia_febrer{
             if(this.entradasParaVender == 0){
                 respuesta = ("Lo sentimos, las entradas para la zona que ha elegido están agotadas");
             } else if(this.entradasParaVender < n){
-                respuesta = ("Solo quedan " + entradasParaVender + " disponibles para la zona que ha seleccionado");
+                respuesta = ("Solo quedan " + entradasParaVender + " entradas disponibles para la zona que ha seleccionado");
             }
             if(this.entradasParaVender >= n){
                 entradasParaVender -= n;

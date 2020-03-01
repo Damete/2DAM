@@ -19,7 +19,7 @@ public class SP19202AU03E03_client_damia_febrer{
 
             Scanner sc = new Scanner(System.in);
 
-            System.out.println("Bienvenido a la compra online de entradas, ¿que acción desea realizar? \n" +
+            System.out.println("\n Bienvenido a la compra online de entradas, ¿que acción desea realizar? \n" +
                                 "1. Mostrar número de entradas libres \n" +
                                 "2. Vender entradas \n" +
                                 "3. Salir \n" +
