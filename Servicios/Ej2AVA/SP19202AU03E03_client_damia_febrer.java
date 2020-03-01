@@ -8,6 +8,8 @@ public class SP19202AU03E03_client_damia_febrer{
     public static void main(String[] args) {      
 
         try{
+            boolean iterate = true;
+            while(iterate){
             Socket cliente = new Socket();
             InetSocketAddress addr = new InetSocketAddress("localhost", 44014);
             cliente.connect(addr);
@@ -87,10 +89,17 @@ public class SP19202AU03E03_client_damia_febrer{
                 break;
     
                 case"3":
+                System.out.println("Tenga un buen dia");
+                cliente.close();
+                is.close();
+                os.close();
+                sc.close();
+                iterate = false;
                 break;
     
                 default:
                 System.out.println("El valor proporcionado es incorrecto, por favor vuelva a intentarlo");
+                }
             }           
 
 
