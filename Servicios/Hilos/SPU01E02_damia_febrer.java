@@ -1,4 +1,4 @@
-package Servicios;
+package Servicios.Hilos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,12 +22,12 @@ public class SPU01E02_damia_febrer {
 			System.out.println("Pulse intro para continuar, o fin para acabar...");
 			while((linea = sc.nextLine()).compareTo("fin") != 0) { //Mientras lo que escribamos no sea fin se hace el bucle
 				
-				salidaHaciaHijo.println(""); //Se le pasa al hijo un str vacio ¡
+				salidaHaciaHijo.println(""); //Se le pasa al hijo un str vacio ï¿½
 				salidaHaciaHijo.flush(); //Se vacia el stream
 				
 				sleep(100); // Sleep para que el hijo tenga tiempo de hacer sus procesos y devolver sus valores
 				
-				System.out.println("El número recibido del hijo es: " + entrada_hijo.readLine()); // Recogemos lo recibido del hijo y lo mostramos por pantalla
+				System.out.println("El nï¿½mero recibido del hijo es: " + entrada_hijo.readLine()); // Recogemos lo recibido del hijo y lo mostramos por pantalla
 				
 				System.out.println("Pulsa intro para continuar, o fin para acabar..."); //Pedimos al usuario que vuelva a interactuar con el programa
 				

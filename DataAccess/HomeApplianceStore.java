@@ -26,9 +26,9 @@ public class HomeApplianceStore {
 		
 		while(!menuStatus) {
 			System.out.println("========================================="
-					+ "\n Bienvenido a la tienda el Tiendin, Que acci�n quiere realizar? \n 1- Guardar nuevo producto \n 2- Abrir un fichero stock.dat \n 3- Mostrar el registro \n 4- Vender producto \n 5- Salir \n"
+					+ "\n Bienvenido a la tienda el Tiendin, Que acción quiere realizar? \n 1- Guardar nuevo producto \n 2- Abrir un fichero stock.dat \n 3- Mostrar el registro \n 4- Vender producto \n 5- Salir \n"
 					+ "=========================================");
-			var respuesta = sc.nextInt();
+			int respuesta = sc.nextInt();
 			
 			switch(respuesta) {
 			case 1:
@@ -120,7 +120,7 @@ public class HomeApplianceStore {
 	}
 	
 	public void mostrarRegistro() {
-		var separador = ",";
+		String separador = ",";
 		String linea = "";
 		String [] auxiliar = null;
 		ArrayList<String> Articulos = new ArrayList<String>();
@@ -252,7 +252,7 @@ public class HomeApplianceStore {
 	
 	public String revisarStock(String producto) {
 		String linea = "";
-		var separador = ",";
+		String separador = ",";
 		String stock = "";
 		String [] auxiliar = null;
 		ArrayList<String> Articulos = new ArrayList<String>();
@@ -394,7 +394,7 @@ public class HomeApplianceStore {
 	}
 	
 	public boolean productoExiste(String producto) {
-		var separador = ",";
+		String separador = ",";
 		String linea = "";
 		boolean existe = false;
 		String [] auxiliar = null;

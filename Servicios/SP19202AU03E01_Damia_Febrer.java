@@ -1,8 +1,10 @@
+package Servicios;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.io.*;
-import hava.net.*;
+import java.net.*;
 
 public class SP19202AU03E01_Damia_Febrer{
     public static void main(String[] args) {
@@ -14,7 +16,7 @@ public class SP19202AU03E01_Damia_Febrer{
             DataInputStream input = new DataInputStream(cliente.getInputStream());
             String msg = "mensaje del cliente";
             br.write(msg);
-            Ssytem.out.println(input);
+            System.out.println(input);
             cliente.close();
         } catch(IOException e){
             e.printStackTrace();

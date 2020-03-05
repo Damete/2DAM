@@ -1,3 +1,5 @@
+package Servicios.SupermercadoSemaforo;
+
 import java.util.concurrent.Semaphore;
 
 public class Main{  //Esta versión es funcional lo unico que queda por hacer es "hacerlo bonito"  24/01/2020-17:38
