@@ -25,8 +25,13 @@ public class SP19203AU04E01_servidor_damia_febrer{
                 String accion = new String(solicitud);
                 accion = cleanString(accion);
 
-                if (accion.equals("LLISTA")) {
+                if (accion.equals("LLISTA")) { /////PENDIENTE !!!!!
                     initializateListOfFiles();
+                    String file = "";
+                    for(int i = 0; i < listOfFiles.length; i ++){                                               
+                        file += i + "- " + listOfFiles[i].getName() + "\n";
+                    }
+                    os.write(file.getBytes());
                 }
                 else if(accion.equals("OBTENIR")){
                     //Solicitar el ID del fichero
@@ -45,7 +50,7 @@ public class SP19203AU04E01_servidor_damia_febrer{
                         initializateListOfFiles();
                     }
 
-                    if(Integer.parseInt(id) >= listOfFiles.length){
+                    if(Integer.parseInt(id) >= listOfFiles.length || Integer.parseInt(id) < 0){
                         String error = "-1";
                         byte[] fail = error.getBytes();
                         os.write(fail);
@@ -82,12 +87,6 @@ public class SP19203AU04E01_servidor_damia_febrer{
     public static void initializateListOfFiles(){
       // Mostrar listado de ficheros
       File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
-      listOfFiles = folder.listFiles();      
-
-      for(int i = 0; i < listOfFiles.length; i++){          
-          if(listOfFiles[i].isFile()){
-            files[i] = listOfFiles[i].getName();    
-          }
-      }  
+      listOfFiles = folder.listFiles(); 
     }
 }
