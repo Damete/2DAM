@@ -25,7 +25,7 @@ public class SP19203AU04E01_servidor_damia_febrer{
                 String accion = new String(solicitud);
                 accion = cleanString(accion);
 
-                if (accion.equals("LLISTA")) { /////PENDIENTE !!!!!
+                if (accion.equals("LLISTA")) {
                     initializateListOfFiles();
                     String file = "";
                     for(int i = 0; i < listOfFiles.length; i ++){                                               
@@ -49,21 +49,28 @@ public class SP19203AU04E01_servidor_damia_febrer{
                     if(listOfFiles == null){
                         initializateListOfFiles();
                     }
-
-                    if(Integer.parseInt(id) >= listOfFiles.length || Integer.parseInt(id) < 0){
+                    
+                    if(checkInteger(id) == true){
+                        if(Integer.parseInt(id) >= listOfFiles.length || Integer.parseInt(id) < 0){
+                            String error = "-1";
+                            byte[] fail = error.getBytes();
+                            os.write(fail);
+                        }
+                        else{
+                            File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
+                            listOfFiles = folder.listFiles();
+    
+                            File ficheroSolicitado = listOfFiles[Integer.parseInt(id)];
+    
+                            byte[] fileContent = Files.readAllBytes(ficheroSolicitado.toPath());
+                            os.write(fileContent);
+                        }
+                    }
+                    else{
                         String error = "-1";
                         byte[] fail = error.getBytes();
                         os.write(fail);
-                    }
-                    else{
-                        File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
-                        listOfFiles = folder.listFiles();
-
-                        File ficheroSolicitado = listOfFiles[Integer.parseInt(id)];
-
-                        byte[] fileContent = Files.readAllBytes(ficheroSolicitado.toPath());
-                        os.write(fileContent);
-                    }
+                    }                    
                 }
             }
         }
@@ -88,5 +95,16 @@ public class SP19203AU04E01_servidor_damia_febrer{
       // Mostrar listado de ficheros
       File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
       listOfFiles = folder.listFiles(); 
+    }
+
+    public static boolean checkInteger(String s){
+        try{
+            Integer.parseInt(s);
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
+
+        return true;
     }
 }

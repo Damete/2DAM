@@ -25,7 +25,7 @@ public class SP19203AU04E01_client_damia_febrer{
                 String respuesta = sc.nextLine();
 
                 switch(respuesta){
-                    case "1": /// PENDIENTE!!!!!
+                    case "1":
                         //Obtener ID's
                         String solicitudLista = "LLISTA";
                         byte[] solicitarLista = solicitudLista.getBytes();
@@ -35,7 +35,8 @@ public class SP19203AU04E01_client_damia_febrer{
                         is.read(listadoServidor);
                         String listado = new String(listadoServidor);
                         listado = cleanString(listado);
-
+                        
+                        //Printeamos el listado
                         System.out.println("\n Inicio del listado de ficheros \n");
                         System.out.println(listado);
                         System.out.println("\n Fin del listado de ficheros \n");
