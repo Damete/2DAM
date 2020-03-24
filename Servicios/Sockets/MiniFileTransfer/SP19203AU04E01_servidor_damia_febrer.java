@@ -57,7 +57,7 @@ public class SP19203AU04E01_servidor_damia_febrer{
                             os.write(fail);
                         }
                         else{
-                            File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
+                            File folder = new File(System.getProperty("user.home") + "/Desktop");
                             listOfFiles = folder.listFiles();
     
                             File ficheroSolicitado = listOfFiles[Integer.parseInt(id)];
@@ -93,7 +93,7 @@ public class SP19203AU04E01_servidor_damia_febrer{
 
     public static void initializateListOfFiles(){
       // Mostrar listado de ficheros
-      File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
+      File folder = new File(System.getProperty("user.home") + "/Desktop");
       listOfFiles = folder.listFiles(); 
     }
 
