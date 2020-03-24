@@ -1,7 +1,6 @@
 package Servicios.Sockets.MiniFileTransfer;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
@@ -9,36 +8,86 @@ import java.net.Socket;
 import java.nio.file.Files;
 
 public class SP19203AU04E01_servidor_damia_febrer{
+    static File[] listOfFiles = null;
+    static String[] files = new String[10000];
     public static void main(String[] args) {
-        try{
+        try {
             ServerSocket socket = new ServerSocket(44014);
 
-            while(true){
+            while(true) {
                 Socket servidor = socket.accept();
 
                 InputStream is = servidor.getInputStream();
                 OutputStream os = servidor.getOutputStream();
 
-                byte[] solicitud = new byte[20];
+                byte[] solicitud = new byte[50];
                 is.read(solicitud);
-                
                 String accion = new String(solicitud);
+                accion = cleanString(accion);
 
-                if(accion.contains("LLISTA")){
-                    //Mostrar listado de ficheros
+                if (accion.equals("LLISTA")) {
+                    initializateListOfFiles();
                 }
-                else if(accion.contains("OBTENIR")){
-                    //Devolver el contenido del fichero que se ha solicitado
-                    String rutaFichero = "F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer\\test.dat";
-                    File file = new File(rutaFichero);
-                    byte[] fileContent = Files.readAllBytes(file.toPath());
+                else if(accion.equals("OBTENIR")){
+                    //Solicitar el ID del fichero
+                    String dameElId = "introduzca el ID del fichero que quiere obtener";
+                    byte[] pregunta = dameElId.getBytes();
+                    os.write(pregunta);
 
-                    os.write(fileContent);
+                    //recibimos el ID del fichero
+                    byte[] recibido = new byte[50];
+                    is.read(recibido);
+                    String id = new String(recibido);
+                    
+                    id = cleanString(id);
+
+                    if(listOfFiles == null){
+                        initializateListOfFiles();
+                    }
+
+                    if(Integer.parseInt(id) >= listOfFiles.length){
+                        String error = "-1";
+                        byte[] fail = error.getBytes();
+                        os.write(fail);
+                    }
+                    else{
+                        File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
+                        listOfFiles = folder.listFiles();
+
+                        File ficheroSolicitado = listOfFiles[Integer.parseInt(id)];
+
+                        byte[] fileContent = Files.readAllBytes(ficheroSolicitado.toPath());
+                        os.write(fileContent);
+                    }
                 }
             }
         }
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static String cleanString(String dirty){
+        String clean = "";
+
+        for(int i = 0; i < dirty.length(); i++){
+            if(dirty.charAt(i) != 00){
+                clean += dirty.charAt(i);
+            }
+        }
+
+        return clean;
+    }
+
+    public static void initializateListOfFiles(){
+      // Mostrar listado de ficheros
+      File folder = new File("F:\\DAM\\Segundo\\2DAM\\2DAM_Java\\Servicios\\Sockets\\MiniFileTransfer");
+      listOfFiles = folder.listFiles();      
+
+      for(int i = 0; i < listOfFiles.length; i++){          
+          if(listOfFiles[i].isFile()){
+            files[i] = listOfFiles[i].getName();    
+          }
+      }  
     }
 }

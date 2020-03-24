@@ -10,21 +10,26 @@ public class SP19203AU04E01_client_damia_febrer{
     public static void main(String[] args) {
         try{
             Scanner sc = new Scanner(System.in);
+            Scanner s2 = new Scanner(System.in);
             boolean iterate = true;
-            Socket socket = new Socket();
-            InetSocketAddress addr = new InetSocketAddress("localhost", 44014);
-            socket.connect(addr);
-
-            InputStream is = socket.getInputStream();
-            OutputStream os = socket.getOutputStream();            
 
             while(iterate){
-                System.out.println("DamoZilla \n 1- Listado de ficheros \n 2- Obtener fichero \n 3- Salir");
+                Socket socket = new Socket();
+                InetSocketAddress addr = new InetSocketAddress("localhost", 44014);
+                socket.connect(addr);
+
+                InputStream is = socket.getInputStream();
+                OutputStream os = socket.getOutputStream();
+
+                System.out.println("\n DamoZilla \n 1- Listado de ficheros \n 2- Obtener fichero \n 3- Salir");
                 String respuesta = sc.nextLine();
 
                 switch(respuesta){
                     case "1":
                         //Obtener ID's
+                        String solicitudLista = "LLISTA";
+                        byte[] solicitarLista = solicitudLista.getBytes();
+                        os.write(solicitarLista);
                         break;
                     
                     case "2":
@@ -33,16 +38,37 @@ public class SP19203AU04E01_client_damia_febrer{
                         byte[] mensaje = solicitud.getBytes();
                         os.write(mensaje);
 
+                        //El servidor pregunta el ID del fichero
+                        byte[] pregunta = new byte[100];
+                        is.read(pregunta);
+                        String preguntaDelServer = new String(pregunta);
+
+                        // Enviamos el ID del fichero
+                        System.out.println(preguntaDelServer);
+                        String id = sc.nextLine();
+
+                        byte[] idFichero = id.getBytes();
+                        os.write(idFichero);
+
                         //Recibimos la respuesta del servidor
-                        byte[] resultado = new byte[200];
+                        byte[] resultado = new byte[50000];
                         is.read(resultado);
                         String fileContent = new String(resultado);
-                        System.out.println(fileContent);
+
+                        fileContent = cleanString(fileContent);
+
+                        if(fileContent.equals("-1")){
+                            System.out.println("El ID especificado no existe");
+                        }
+                        else{
+                            System.out.println(fileContent);
+                        }                        
                         break;
 
                     case "3":
                         iterate = false;
-                        System.out.println("Cerrando DamoZilla, Adios :)");
+                        socket.close();
+                        System.out.println("\n Cerrando DamoZilla, Adios :)");
                         break;
 
                     default:
@@ -53,5 +79,17 @@ public class SP19203AU04E01_client_damia_febrer{
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static String cleanString(String dirty){
+        String clean = "";
+
+        for(int i = 0; i < dirty.length(); i++){
+            if(dirty.charAt(i) != 00){
+                clean += dirty.charAt(i);
+            }
+        }
+
+        return clean;
     }
 }
