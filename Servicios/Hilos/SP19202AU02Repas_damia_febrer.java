@@ -42,21 +42,16 @@ public class SP19202AU02Repas_damia_febrer {
             }
             while(!eEntrao);
 
-            System.out.println("Thread " + id + " finnito");
+            System.out.println("[Información] La ejecución del thread con id " + id + " ha finalizado" );
         }
     }
 
     static class Controlador{
         int siguiente = 0;
-        int max;
-
-        public Controlador(int max){
-            this.max = max;
-        }
 
         public synchronized boolean accion(int id, int multiplicar){
             if(siguiente == id){
-                System.out.println("Ha entrado " + id);
+                System.out.println("\nHa entrado " + id + "\n");
                 multiplicar(multiplicar);
                 siguiente ++;                
                 notifyAll();
@@ -79,28 +74,13 @@ public class SP19202AU02Repas_damia_febrer {
                 comprobar = false;
                 sc.close();
 
-                Controlador cont = new Controlador(3);
+                Controlador cont = new Controlador();
                 
                 for(int i = 0; i <= 3; i++){
                     MiThread hilo =  new MiThread(i, introducido, cont);
                     hilo.start();
                     introducido ++;
                 }
-
-                // MiThread t1 = new MiThread("Primero", introducido);
-                // t1.start();
-
-                // introducido += 1;
-                // MiThread t2 = new MiThread("Segundo", introducido);
-                // t2.start();
-
-                // introducido += 1;
-                // MiThread t3 = new MiThread("Tercero", introducido);
-                // t3.start();
-
-                // introducido += 1;
-                // MiThread t4 = new MiThread("Cuarto", introducido);
-                // t4.start();
             }
             catch(InputMismatchException ime){
                 comprobar = true;
