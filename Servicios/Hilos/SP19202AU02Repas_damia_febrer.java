@@ -7,7 +7,7 @@ public class SP19202AU02Repas_damia_febrer {
 
     static int introducido;
 
-    public static synchronized void multiplicar(int factor){
+    public static void multiplicar(int factor){
         for(int i = 0; i <= 10; i++){
             int resultado = factor * i;
             System.out.println(factor + " por " + i + " es " + resultado);
