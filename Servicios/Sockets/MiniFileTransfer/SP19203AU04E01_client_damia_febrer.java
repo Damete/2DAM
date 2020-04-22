@@ -15,7 +15,7 @@ public class SP19203AU04E01_client_damia_febrer{
 
             while(iterate){
                 Socket socket = new Socket();
-                InetSocketAddress addr = new InetSocketAddress("localhost", 44014);
+                InetSocketAddress addr = new InetSocketAddress("localhost", 44001);
                 socket.connect(addr);
 
                 InputStream is = socket.getInputStream();

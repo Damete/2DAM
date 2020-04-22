@@ -12,7 +12,7 @@ public class SP19203AU04E01_servidor_damia_febrer{
     static String[] files = new String[10000];
     public static void main(String[] args) {
         try {
-            ServerSocket socket = new ServerSocket(44014);
+            ServerSocket socket = new ServerSocket(44001);
 
             while(true) {
                 Socket servidor = socket.accept();

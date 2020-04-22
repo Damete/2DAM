@@ -6,6 +6,7 @@ class Libro:
     editorial = ""
     año = ""
     copias = ""
+    ISBN = ""
 
     def __init__(self, nombre, autor, genero, editorial, año, copias):
         self.nombre = nombre
